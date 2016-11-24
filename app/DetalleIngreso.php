@@ -20,6 +20,7 @@ class DetalleIngreso extends Model
         'cantidad',
         'precio_compra',
         'precio_venta'
+
         
 
     ];

@@ -27,13 +27,13 @@ class ProveedorController extends Controller
             ->where('tipo_persona','=','Proveedor')
             ->orderBy('idpersona','desc')
             ->paginate(8);
-            return view('ventas.proveedor.index',["personas"=>$personas,"searchText"=>$query]);
+            return view('compras.proveedor.index',["personas"=>$personas,"searchText"=>$query]);
            
         }
     }
     public function create()
     {
-        return view("ventas.proveedor.create");
+        return view("compras.proveedor.create");
     }
     public function store (PersonaFormRequest $request)
     {
@@ -46,17 +46,17 @@ class ProveedorController extends Controller
         $persona->telefono=$request->get('telefono');
         $persona->email=$request->get('email');        
         $persona->save();
-        return Redirect::to('ventas/proveedor');
+        return Redirect::to('compras/proveedor');
 
     }
     public function show($id)//por ahora no
     {
-        return view("ventas.proveedor",["persona"=>Persona::findOrFail($id)]);
+        return view("compras.proveedor",["persona"=>Persona::findOrFail($id)]);
     }
     public function edit($id) 
     {      
     	$persona=Persona::findOrFail($id);
-        return view("ventas.proveedor.edit",["persona"=>$persona]);
+        return view("compras.proveedor.edit",["persona"=>$persona]);
     }
 
     
@@ -71,13 +71,13 @@ class ProveedorController extends Controller
         $persona->telefono=$request->get('telefono');
         $persona->email=$request->get('email');  
         $persona->update();
-        return Redirect::to('ventas/proveedor');
+        return Redirect::to('compras/proveedor');
     }
     public function destroy($id)
     {
         $persona=Persona::findOrFail($id);
         $persona->tipo_persona='Inactivo'; //Normamlmente son clientes
         $persona->update();
-        return Redirect::to('ventas/proveedor');
+        return Redirect::to('compras/proveedor');
     }
 }
